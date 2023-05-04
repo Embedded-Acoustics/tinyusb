@@ -105,7 +105,10 @@ static bool _sof_en;
 // Calculate the RX FIFO size according to recommendations from reference manual
 static inline uint16_t calc_grxfsiz(uint16_t max_ep_size, uint8_t ep_count)
 {
-  return 15 + 2*(max_ep_size/4) + 2*ep_count;
+  // return 15 + 2*(max_ep_size/4) + 2*ep_count;
+
+  // Changing the fifo-size at runtime can mess things up badly. So fo now fix it to a single value
+  return 128;
 }
 
 static void update_grxfsiz(uint8_t rhport)
